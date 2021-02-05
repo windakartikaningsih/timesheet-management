@@ -124,7 +124,7 @@ function createEmployee() {
     let phoneNumber = $("[name='phoneNumber']").val();
     let divisionId = $("[name='division']").val();
     if (divisionId == "" || divisionId == null) {
-        divisionId = null;
+        disionId = null;
     }
     let employee = {
         'firstName': firstName,

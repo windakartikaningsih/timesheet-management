@@ -104,6 +104,7 @@ function createDivision() {
             'id': managerSiteId
         }
     };
+    console.log(division);
     $.ajax({
         url: "/ajax/super-admin/division/create",
         type: "POST",

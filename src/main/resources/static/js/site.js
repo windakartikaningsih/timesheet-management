@@ -103,7 +103,7 @@ function createSite() {
     let city = $("[name='city']").val();
     let relationManager = $("[name='relationManagerId']").val();
     if (relationManager == "" || relationManager == null) {
-        relationManager = null;
+        relaManager = null;
     }
     let site = {
         'id': id,
