@@ -43,7 +43,7 @@ public class VerificationService {
         // To
         helper.setTo(employee.getEmail());
         // Subject
-        helper.setSubject("Your Account Has Created");
+        helper.setSubject("Timesheet Management Account");
         // Body
         message.setText("<h1>Account Created</h1> "
                 + "<p>Dear, "+ employee.getLastName() +"</p> "

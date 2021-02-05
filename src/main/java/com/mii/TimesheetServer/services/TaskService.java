@@ -21,7 +21,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.TimeZone;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -134,7 +136,10 @@ public class TaskService {
         cs.setBorderTop(BorderStyle.THIN);
         cs.setBorderRight(BorderStyle.THIN);
         cs.setAlignment(HorizontalAlignment.CENTER);
-
+        SimpleDateFormat startH = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat endH = new SimpleDateFormat("HH:mm");
+        startH.setTimeZone(TimeZone.getTimeZone("UTC"));
+        endH.setTimeZone(TimeZone.getTimeZone("UTC"));
         int i = 0;  //for while loop
         int j = 0;  //for tasks loop
         while (i < lastDay) {
@@ -156,9 +161,9 @@ public class TaskService {
                 if (tasks.get(j) != null && getZeroTime(today).compareTo(getZeroTime(tasks.get(j).getDate())) == 0) {
                     Duration duration = Duration.between(tasks.get(j).getEndHour().toInstant(), tasks.get(j).getStartHour().toInstant());
                     long hour = Math.abs(duration.toHours());
-                    long minute = duration.toMinutes() % 60;
-                    start.setCellValue(new SimpleDateFormat("HH:mm").format(tasks.get(j).getStartHour()));
-                    end.setCellValue(new SimpleDateFormat("HH:mm").format(tasks.get(j).getEndHour()));
+                    long minute = Math.abs(duration.toMinutes() % 60);
+                    start.setCellValue(startH.format(tasks.get(j).getStartHour()));
+                    end.setCellValue(endH.format(tasks.get(j).getEndHour()));
                     total.setCellValue(hour + ":" + minute);
                     activity.setCellValue(tasks.get(j).getCategory().getCategoryName() + " - " + tasks.get(j).getActivity());
                     switch (tasks.get(j).getStatusAttendance().getStatusAttendanceName()) {
