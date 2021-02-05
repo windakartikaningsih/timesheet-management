@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="layout/header :: head_layout"></head>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        
+        <!-- Sidebar -->
+        <ul th:replace="layout/sidebar :: sidebar_layout"></ul>
+        <!-- End of Sidebar -->
+        
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav th:replace="layout/topbar :: topbar_layout"></nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                 <div class="container-fluid">
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h4 class="m-0 font-weight-bold text-primary" sec:authorize="hasRole('ADMIN')">Super Admin Profile</h4>
+                            <h4 class="m-0 font-weight-bold text-primary" sec:authorize="hasRole('RELATION_MANAGER')">Relation Manager Profile</h4>
+                            <h4 class="m-0 font-weight-bold text-primary" sec:authorize="hasRole('EMPLOYEE')">Employee Profile</h4>
+                        </div>
+                        <div class="card-body">
+
+                            <p>Username : <span sec:authentication='name'></span></p><br>
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <p>First Name : </p>
+                                    <input th:value="${user.employees.firstName}" class="form-control form-control-user" id="" disabled>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p>Last Name : </p>
+                                    <input th:value="${user.employees.lastName}" class="form-control form-control-user" id="" disabled>
+                                </div>
+                            </div>
+                            <br>
+
+                            <p>Email : <span th:text="${user.employees.email}"></span></p><br>
+                            <p>Phone Number : <span th:text="${user.employees.phoneNumber}"></span></p><br>
+                            <p sec:authorize="hasRole('EMPLOYEE')">Manager : <span th:text="${user.employees.division?.managerSite?.firstName} + ' ' + ${user.employees.division?.managerSite?.lastName}"></span></p>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer th:replace="layout/footer :: footer_layout"></footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Modal-->
+    <div th:replace="modal/logout :: logout_modal"></div>
+    <div th:replace="modal/site :: siteModal"></div>
+
+    <!-- Bootstrap core JavaScript-->
+    <!--<script th:src="@{/vendor/jquery/jquery.min.js}"></script>-->
+    <!--<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>-->
+
+    <!-- Core plugin JavaScript-->
+    <!--<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>-->
+
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+    <!-- Page level plugins -->
+    <!--<script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>-->
+    <!--<script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>-->
+
+    <!-- Page level custom scripts -->
+    <!--<script th:src="@{/js/demo/datatables-demo.js}"></script>-->
+
+</body>
+
+</html>

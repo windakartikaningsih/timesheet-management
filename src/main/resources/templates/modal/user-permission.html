@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!--  Modal content for the above example -->
+<div class="modal fade bs-example-modal-lg" id="userPermissionModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" th:fragment="userPermissionModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">User Permission</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+
+            <form th:id="formModalPermit" enctype="multipart/form-data" method="POST">
+                <div class="modal-body">
+
+                    <!--User Permission Id-->
+                    <div class="form-group" th:id="id">
+                        <label class="col-form-label" for="upermitId">User Permission ID</label>
+                        <input class="form-control" type="text" th:id="idVal" name="id" disabled required>
+                    </div>
+                    
+                    <!--User Name-->
+                    <div class="form-group">
+                        <label class="col-form-label" for="userName">User Name</label>
+                        <select class="form-control" name="userId" th:id="userVal" style="width: 100%;">
+                            <option value="">-- Select User --</option>
+                            <option th:each="user : ${users}" th:value=${user.id} th:text="${user.username}"></option>
+                        </select>
+                    </div>
+                    <div class="invalid-feedback">Please select User Name</div>
+                    
+                    <!--Permission-->
+                    <div class="form-group">
+                        <label class="col-form-label" for="userPermission">Permission</label>
+                        <select class="form-control" th:name="permissionId" th:id="permitVal" style="width: 100%;">
+                            <option value="">-- Select Permission --</option>
+                            <option th:each="permit : ${permission}" th:value=${permit.id} th:text="${permit.permissionName}"></option>
+                        </select>
+                    </div>
+                    <div class="invalid-feedback">Please select Permission Name</div>
+
+                    <div class="modal-footer">
+                        <div class="form-group row">
+                            <div class="col-sm 10">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" id="saveUserPermission">Save Permission</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

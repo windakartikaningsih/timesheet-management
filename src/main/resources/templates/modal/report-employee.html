@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div class="modal fade" id="reportEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="reportEmployeeModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="report-modal-label">Report Detail</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" >
+                <div class="form-group">
+                    <label class="col-form-label" for="name" th:id="id-l" >Report ID:</label>
+                    <input class="form-control" type="text" th:id="report-id" name="id" disabled required>
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="name" th:id="name-l">Report Name:</label>
+                    <input class="form-control" type="text" th:id="report-name" name="name" disabled required>
+                </div>
+                <div class="invalid-feedback">Please enter role id</div>
+                <div class="form-group">
+                    <label class="col-form-label" for="reportDate" th:id="report-date-l">Report Date:</label>
+                    <input class="form-control" type="text" th:id="report-date" name="reportDate" disabled required>
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="reportDate" th:id="upload-date-l">Upload Date:</label>
+                    <input class="form-control" type="text" th:id="upload-date" name="uploadDate" disabled required>
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="reportDate" th:id="status-l">Status:</label>
+                    <input class="form-control" type="text" th:id="report-status" name="status" disabled required>
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="reportDate" th:id="status-l">Notes:</label>
+                    <table id="note-table" class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th width="20%">Date</th>
+                                <th width="80%">Note</th>
+                            </tr>
+                        </thead>
+                        <tbody id="note-table-body">
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="form-group">
+                    <a th:href="@{/relation-manager/{siteId}/{empId}/task 
+                       (empId = ${employee.id}, siteId = ${employee.division?.managerSite?.site?.id})}"
+                       class="btn btn-primary btn-icon-split" >
+                        <span class="icon text-white-50">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                        <span class="text">View Daily Task</span>
+                    </a>
+
+                    <button id="download-btn" class="btn btn-success btn-icon-split"
+                            onclick='download()'>
+                        <span class="icon text-white-50">
+                            <i class="fas fa-download"></i>
+                        </span>
+                        <span class="text">Download Report</span>
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <button id="accept-btn" class="btn btn-success btn-icon-split"
+                            data-target="#messageModal">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Accept Report</span>
+                    </button>
+
+                    <button id="reject-btn" class="btn btn-danger btn-icon-split"
+                            data-target="#messageModal">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        <span class="text">Reject Report</span>
+                    </button>
+                </div>
+                <button id="message-btn" class="btn btn-warning btn-icon-split"
+                        data-target="#messageModal">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                    <span class="text">Send Message</span>
+                </button>
+                <!--</div>-->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

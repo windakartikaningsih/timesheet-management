@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!--  Modal content for the above example -->
+<div class="modal fade bs-example-modal-lg" id="managerModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" th:fragment="managerModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">Manager Site</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <form th:id="formModal" method="POST">
+                <div class="modal-body">
+                    <div class="form-group" th:id="id-1">
+                        <label class="col-form-label" for="id">Manager Site ID</label>
+                        <input class="form-control" type="text" th:id="id" name="id" disabled>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label class="col-form-label" for="firstName">First Name</label>
+                            <input class="form-control" type="text" th:id="firstName" name="firstName" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="col-form-label" for="lastName">Last Name</label>
+                        <input class="form-control" type="text" th:id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label" for="email">Email</label>
+                        <input class="form-control" type="email" th:id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-form-label" for="site">Site</label>
+                        <select class="form-control" th:name="site" th:id="site" style="width: 100%;">
+                            <option value="">-- Choose --</option>
+                            <option th:each="s : ${site}" th:value=${s.id} th:text="${s.siteName}"></option>
+                        </select>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <div class="form-group row">
+                            <div class="col-sm 10">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" id="saveManagerSite">Submit Manager Site</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

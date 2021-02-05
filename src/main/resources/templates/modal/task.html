@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!--  Modal content for the above example -->
+<div class="modal fade bs-example-modal-lg" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" th:fragment="taskModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <form id="modalForm" method="POST" class="needs-validation" novalidate action="/employee/task" th:object="${task}">
+                <div class="modal-body">
+                    <div class="form-group" th:id="id">
+                        <label class="col-form-label" for="id">Task ID</label>
+                        <input class="form-control" type="text" th:id="idVal" name="id">
+                    </div>
+                    <div class="invalid-feedback">Please Enter Task Name</div>
+                    
+                    <div class="form-group">
+                        <label class="col-form-label" for="projectName">Task Name</label>
+                        <input class="form-control" type="text" th:id="projectName" name="projectName" required>
+                    </div>
+                    <div class="invalid-feedback">Please Enter Task Name</div>
+
+                    <div class="form-group">
+                        <label class="col-form-label" for="date">Date</label>
+                        <input class="form-control" type="date" th:id="date" name="date" required>
+                    </div>
+                    <div class="invalid-feedback">Please Enter Date</div>
+
+                    <div class="form-group">
+                        <label class="col-form-label" for="startHour">Start Hour</label>
+                        <input class="form-control" type="time" th:id="startHour" name="startHour" required>
+                    </div>
+                    <div class="invalid-feedback">Please Enter Start Hour</div>
+
+                    <div class="form-group">
+                        <label class="col-form-label" for="endHour">End Hour</label>
+                        <input class="form-control" type="time" th:id="endHour" name="endHour" required>
+                    </div>
+                    <div class="invalid-feedback">Please Enter End Hour</div>
+
+                    <div class="form-group">
+                        <label class="col-form-label" for="Activity">Activity</label>
+                        <textarea class="form-control" type="text" th:id="activity" name="activity" rows="3" required></textarea>
+                    </div>
+                    <div class="invalid-feedback">Please Enter Activity</div>
+
+                    <div class="form-group">
+                        <label for="status-attendance-dropdown">Status Attendance</label>
+                        <div class="input-group">
+                            <select style="width: 100%" id="status-attendance-dropdown" class="form-control py-5" th:name = "statusAttendanceId" required>
+                                <option value="">Select Attendance</option>
+                                <option th:each="statusAttendance : ${statusAttendances}"
+                                        th:value="${statusAttendance.id}"
+                                        th:text="${statusAttendance.id} + ' - ' + ${statusAttendance.statusAttendanceName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="invalid-feedback">Please Enter Status Attendance</div>
+
+                    <div class="form-group">
+                        <label for="category-dropdown">Category</label>
+                        <div class="input-group">
+                            <select style="width: 100%" id="category-dropdown" class="form-control py-5" th:name = "categoryId" required>
+                                <option value="">Category</option>
+                                <option th:each="category : ${categories}"
+                                        th:value="${category.id}"
+                                        th:text="${category.id} + ' - ' + ${category.categoryName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="invalid-feedback">Please Enter Category</div>
+
+                    <div class="modal-footer">
+                        <div class="form-group row">
+                            <div class="col-sm 10">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary task-submit" id="btn-save">Save Task</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

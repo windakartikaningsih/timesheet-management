@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!--  Modal content for the above example -->
+<div class="modal fade bs-example-modal-lg" id="userRoleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" th:fragment="userRoleModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">User Role</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+
+            <form th:id="formModalRole" method="POST">
+                <div class="modal-body">
+
+                    <!--User Role Id-->
+                    <div class="form-group">
+                        <label class="col-form-label" for="uroleId" th:id="id-label">User Role ID</label>
+                        <input class="form-control" type="text" th:id="id-input" name="id" disabled>
+                    </div>
+                    
+                    <!--User Name-->
+                    <div class="form-group">
+                        <label class="col-form-label" for="userName" th:id="username-label">User Name</label>
+                        <select class="form-control" name="userName" id="username-select" style="width: 100%;">
+                            <option value="">-- Select User --</option>
+                            <option th:each="user : ${users}" th:value=${user.id} th:text="${user.username}"></option>
+                        </select>
+                    </div>
+                    <div class="invalid-feedback">Please select User Name</div>
+                    
+                    <!--Role-->
+                    <div class="form-group">
+                        <label class="col-form-label" for="userRole" th:id="urole-label">Role</label>
+                        <select class="form-control" name="userRole" id="urole-select" style="width: 100%;">
+                            <option value="">-- Select Role --</option>
+                            <option th:each="role : ${roles}" th:value=${role.id} th:text="${role.roleName}"></option>
+                        </select>
+                    </div>
+                    <div class="invalid-feedback">Please select Role Name</div>
+
+                    <div class="modal-footer">
+                        <div class="form-group row">
+                            <div class="col-sm 10">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" id="saveUserRole">Save Role</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

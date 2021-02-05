@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!--  Modal content for the above example -->
+<div class="modal fade bs-example-modal-lg" id="roleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" th:fragment="roleModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">Role</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="col-form-label" for="roleName">Role Name</label>
+                        <input class="form-control" type="text" th:id="name" name="roleName" required>
+                    </div>
+                    <div class="invalid-feedback">Please enter role name</div>
+                    
+                    <div class="modal-footer">
+                        <div class="form-group row">
+                            <div class="col-sm 10">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" id="btn-save">Save Role</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

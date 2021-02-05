@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!--  Modal content for the above example -->
+<div class="modal fade bs-example-modal-lg" id="userModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" th:fragment="userModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <form th:id="modalForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-form-label" for="id" th:id="id-1">Employee</label>
+                        <select class="form-control" name="id" id="id" style="width: 100%;">
+                            <option value="">-- Choose --</option>
+                            <option th:each="employee : ${employees}" 
+                                    th:value="${employee.id}" 
+                                    th:text="${employee.id} + ' - ' + ${employee.firstName} + ' ' + ${employee.lastName}"></option>
+                        </select>
+                    </div>
+                    <div class="invalid-feedback">Please enter employee id</div>
+
+                    <div class="form-group">
+                        <label class="col-form-label" for="username" th:id="username-1">Username</label>
+                        <input class="form-control" type="text" th:id="username" name="username" required>
+                    </div>
+                    <div class="invalid-feedback">Please enter username</div>
+
+                    <div class="modal-footer">
+                        <div class="form-group row">
+                            <div class="col-sm 10">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" id="saveEmployee">Save User</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
